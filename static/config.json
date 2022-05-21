@@ -9,6 +9,7 @@
 		"showTopics": true,
 		"share_typing": true
 	},
+	"kiwiServer": "https://testkw.d3x.ro/webirc/kiwiirc/",
 	"themes": [
 		{ "name": "Default", "url": "static/themes/default" },
 		{ "name": "Dark", "url": "static/themes/dark" },
@@ -25,10 +26,6 @@
 		"greetingText": "Hello!",
 		"infoBackground": "",
 		"infoContent": "Seteaza un nickname si dai start!",
-		"server" : "irc.d3x.ro",
-		"port" : 8679,
-		"tls" : true,
-		"direct" : true,
 		"gecos": "kw client"
 	},
 	"plugins": [
@@ -37,6 +34,6 @@
 	],
 	"conference": {
 		"server": "jitsi.d3x.ro",
-		"secure": false
+		"secure": true
 	}
 }
