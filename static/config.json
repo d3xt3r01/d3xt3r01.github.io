@@ -9,7 +9,7 @@
 		"showTopics": true,
 		"share_typing": true
 	},
-	"kiwiServer": "https://webirc.d3x.ro/webirc/kiwiirc/",
+	"kiwiServer": "https://webirc.d3x.ro/webirc/",
 	"themes": [
 		{ "name": "Default", "url": "static/themes/default" },
 		{ "name": "Dark", "url": "static/themes/dark" },
