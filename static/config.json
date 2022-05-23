@@ -26,7 +26,7 @@
 		"greetingText": "Hello!",
 		"infoBackground": "",
 		"infoContent": "Seteaza un nickname si dai start!",
-		"gecos": "kw client",
+		"gecos": "kw client"
 	},
 	"plugins": [
 		{"name": "conference", "url": "static/plugins/plugin-conference.js"}
