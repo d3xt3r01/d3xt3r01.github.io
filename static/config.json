@@ -32,11 +32,17 @@
 		"who_loop": false
 	},
 	"plugins": [
-		{"name": "conference", "url": "static/plugins/plugin-conference.js"}
+		{"name": "conference", "url": "static/plugins/plugin-conference.js"},
+		{"name": "fileuploader", "url": "static/plugins/plugin-fileuploader.js"}
 
 	],
 	"conference": {
 		"server": "jitsi.d3x.ro",
 		"secure": true
+	},
+	"fileuploader": {
+		"server": "https://webirc.d3x.ro/files",
+		"maxFileSize": 10485760,
+		"note": "Max file size 1M"
 	}
 }
