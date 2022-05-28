@@ -28,6 +28,9 @@
 		"infoContent": "Seteaza un nickname si dai start!",
 		"gecos": "kw client"
 	},
+	"buffers": {
+		"who_loop": false
+	},
 	"plugins": [
 		{"name": "conference", "url": "static/plugins/plugin-conference.js"}
 
