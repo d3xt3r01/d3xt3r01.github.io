@@ -1,42 +1,71 @@
-<div id="irccloud_avatars" style="width:1px;height:1px;position:absolute;left:-1000px;"></div>
+<div id="custom-avatars" style="width:1px;height:1px;position:absolute;left:-1000px;"></div>
 <script>
-kiwi.on('irc.userlist', function(event, network) {
-	var scratch = document.querySelector('#irccloud_avatars');
+kiwi.plugin('avatars', (kiwi) => {
+    let scratch = document.getElementById('custom-avatars');
 
-	event.users.forEach(function(user) {
-		var m = user.ident.match(/^(uid|sid)([0-9]+)$/);
-		if (m && typeof m[2] !== "undefined"){
-			var avatarUrl = 'https://static.irccloud-cdn.com/avatar-redirect/' + m[2];
-			var img = document.createElement('img');
-			img.src = avatarUrl;
+    kiwi.on('irc.join', (event, net) => {
+        kiwi.Vue.nextTick(() => {
+            updateAvatar(net, event.nick);
+        });
+    });
 
-			img.onload = function() {
-				kiwi.state.addUser(network.id, {nick: user.nick, avatar: {
-					small: avatarUrl,
-				}});
-				console.log('Irccloud: '+avatarUrl)
-				scratch.removeChild(img);
-			};
-			img.onerror = function() {
-				scratch.removeChild(img);
-			};
-			scratch.appendChild(img);
-		}else{
-			var d3xavatarUrl = 'https://avatars.d3x.ro/getavatar.php?username=' + user.nick;
-			var img = document.createElement('img');
-			img.src = d3xavatarUrl;
-			img.onload = function() {
-				kiwi.state.addUser(network.id, {nick: user.nick, avatar: {
-					small: d3xavatarUrl,
-				}});
-				console.log('d3x avatar: '+d3xavatarUrl)
-				scratch.removeChild(img);
-			};
-			img.onerror = function() {
-				scratch.removeChild(img);
-			};
-			scratch.appendChild(img);
+    kiwi.on('irc.wholist', (event, net) => {
+        let nicks = event.users.map((user) => user.nick);
+        kiwi.Vue.nextTick(() => {
+            nicks.forEach((nick) => {
+                updateAvatar(net, nick, false);
+            });
+        });
+    });
+
+    kiwi.on('irc.account', (event, net) => {
+        kiwi.Vue.nextTick(() => {
+            updateAvatar(net, event.nick, true);
+        });
+    });
+
+    function updateAvatar(net, nick, _force) {
+        let force = !!_force;
+        let user = kiwi.state.getUser(net.id, nick);
+        if (!user) {
+            return;
+        }
+
+        if (!force && user.avatar && user.avatar.small) {
+            return;
+        }
+
+	var m = user.username.match(/^(uid|sid)([0-9]+)$/);
+	if (m && typeof m[2] !== "undefined"){
+		var avatarUrl = 'https://static.irccloud-cdn.com/avatar-redirect/' + m[2];
+		var img = document.createElement('img');
+		img.src = avatarUrl;
+		img.onload = function() {
+			setAvatar(user, avatarUrl);
+			scratch.removeChild(img);
 		};
-	});
+		img.onerror = function() {
+			scratch.removeChild(img);
+		};
+		scratch.appendChild(img);
+	}else{
+		var d3xavatarUrl = 'https://avatars.d3x.ro/getavatar.php?username=' + user.nick;
+		var img = document.createElement('img');
+		img.src = d3xavatarUrl;
+		img.onload = function() {
+			setAvatar(user, d3xavatarUrl);
+			scratch.removeChild(img);
+		};
+		img.onerror = function() {
+			scratch.removeChild(img);
+		};
+		scratch.appendChild(img);
+	};
+    }
+
+    function setAvatar(user, url){
+        user.avatar.large = url;
+        user.avatar.small = url;
+    }
 });
 </script>
