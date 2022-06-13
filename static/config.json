@@ -35,8 +35,8 @@
 		{"name": "conference", "url": "static/plugins/plugin-conference.js"},
 		{"name": "fileuploader", "url": "static/plugins/plugin-fileuploader.js"},
 		{"name": "avatars", "url": "static/plugins/avatars.html"},
-		{"name": "shownicklistwhenclosebuffer", "url": "static/plugins/shownicklistwhenclosebuffer.html"}
-
+		{"name": "shownicklistwhenclosebuffer", "url": "static/plugins/shownicklistwhenclosebuffer.html"},
+		{"name": "emoji", "url": "static/plugins/plugin-emoji-prelim.min.js"}
 	],
 	"conference": {
 		"server": "jitsi.d3x.ro",
