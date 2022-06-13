@@ -35,21 +35,8 @@ kiwi.plugin('avatars', (kiwi) => {
             return;
         }
 
-	var m = user.username.match(/^(uid|sid)([0-9]+)$/);
-	if (m && typeof m[2] !== "undefined"){
-		var avatarUrl = 'https://static.irccloud-cdn.com/avatar-redirect/' + m[2];
-		var img = document.createElement('img');
-		img.src = avatarUrl;
-		img.onload = function() {
-			setAvatar(user, avatarUrl);
-			scratch.removeChild(img);
-		};
-		img.onerror = function() {
-			scratch.removeChild(img);
-		};
-		scratch.appendChild(img);
-	}else{
-		var d3xavatarUrl = 'https://avatars.d3x.ro/getavatar.php?username=' + user.nick;
+	if(user.account){
+		var d3xavatarUrl = 'https://avatars.d3x.ro/getavatar.php?username=' + user.account;
 		var img = document.createElement('img');
 		img.src = d3xavatarUrl;
 		img.onload = function() {
@@ -60,6 +47,21 @@ kiwi.plugin('avatars', (kiwi) => {
 			scratch.removeChild(img);
 		};
 		scratch.appendChild(img);
+	}else{
+		var m = user.username.match(/^(uid|sid)([0-9]+)$/);
+		if (m && typeof m[2] !== "undefined"){
+			var avatarUrl = 'https://static.irccloud-cdn.com/avatar-redirect/' + m[2];
+			var img = document.createElement('img');
+			img.src = avatarUrl;
+			img.onload = function() {
+				setAvatar(user, avatarUrl);
+				scratch.removeChild(img);
+			};
+			img.onerror = function() {
+				scratch.removeChild(img);
+			};
+			scratch.appendChild(img);
+		}
 	};
     }
 
