@@ -33,7 +33,9 @@
 	},
 	"plugins": [
 		{"name": "conference", "url": "static/plugins/plugin-conference.js"},
-		{"name": "fileuploader", "url": "static/plugins/plugin-fileuploader.js"}
+		{"name": "fileuploader", "url": "static/plugins/plugin-fileuploader.js"},
+		{"name": "avatars", "url": "static/plugins/avatars.html"},
+		{"name": "shownicklistwhenclosebuffer", "url": "static/plugins/shownicklistwhenclosebuffer.html"}
 
 	],
 	"conference": {
