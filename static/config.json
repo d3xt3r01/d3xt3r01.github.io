@@ -36,7 +36,8 @@
 		{"name": "fileuploader", "url": "static/plugins/plugin-fileuploader.js"},
 		{"name": "avatars", "url": "static/plugins/avatars.html"},
 		{"name": "shownicklistwhenclosebuffer", "url": "static/plugins/shownicklistwhenclosebuffer.html"},
-		{"name": "emoji", "url": "static/plugins/plugin-emoji-prelim.min.js"}
+		{"name": "emoji", "url": "static/plugins/plugin-emoji-prelim.min.js"},
+		{"name": "radio", "url": "static/plugins/plugin-radio.html"}
 	],
 	"conference": {
 		"server": "jitsi.d3x.ro",
@@ -46,5 +47,8 @@
 		"server": "https://webirc.d3x.ro/files",
 		"maxFileSize": 10485760,
 		"note": "Max file size 1M"
+	},
+	"plugin-radio": {
+		"url": "https://radio.d3x.ro/stations.json"
 	}
 }
